@@ -11,6 +11,7 @@ SimpleLyskryds::SimpleLyskryds(int redPin1, int yellowPin1, int greenPin1, int r
     _greenPin2 = greenPin2;
     _pstateTime = pstateTimes;
     _state = 0;
+    _nextChange = 0;
 }
 
 
@@ -37,6 +38,7 @@ void SimpleLyskryds::setup(long startTime)
 void SimpleLyskryds::update(long now)
 {
     if (now < _nextChange) return;
+    
     _state = (_state +1) % 8;
     digitalWrite(_redPin1, _state == 0 || _state == 1 || _state == 4 || _state == 5 || _state == 6 || _state == 7);
     digitalWrite(_yellowPin1, _state == 1 || _state == 3);
@@ -44,5 +46,6 @@ void SimpleLyskryds::update(long now)
     digitalWrite(_redPin2, _state == 0 || _state == 1 || _state == 2 || _state == 3 || _state == 4 || _state == 5);
     digitalWrite(_yellowPin2, _state == 5 || _state == 7);
     digitalWrite(_greenPin2, _state == 6);
+    _nextChange = now + _pstateTime[_state];
     
 }
