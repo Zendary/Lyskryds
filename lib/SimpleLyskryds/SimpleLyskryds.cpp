@@ -1,7 +1,7 @@
 #include "SimpleLyskryds.h"
 #include <Arduino.h>
 
-SimpleLyskryds::SimpleLyskryds(int redPin1, int yellowPin1, int greenPin1, int redPin2, int yellowPin2, int greenPin2, long pstateTime)
+SimpleLyskryds::SimpleLyskryds(int redPin1, int yellowPin1, int greenPin1, int redPin2, int yellowPin2, int greenPin2, long pstateTimes[])
 {
     _redPin1 = redPin1;
     _yellowPin1 = yellowPin1;
@@ -9,7 +9,7 @@ SimpleLyskryds::SimpleLyskryds(int redPin1, int yellowPin1, int greenPin1, int r
     _redPin2 = redPin2;
     _yellowPin2 = yellowPin2;
     _greenPin2 = greenPin2;
-    _pstateTime = pstateTime;
+    _pstateTime = pstateTimes;
     _state = 0;
 }
 
